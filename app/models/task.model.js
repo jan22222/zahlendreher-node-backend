@@ -10,7 +10,8 @@ const TaskSchema = mongoose.Schema({
     required: true
   },
   table:{
-		type: TableSchema,
+		type: mongoose.Schema.Types.ObjectId,
+    ref: "Table",
     required: false
   },
 	coworker:

@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const {CellSchema} = require("./cell.model.js")
  const TableSchema = mongoose.Schema({
-	 title: String,
-	 cells: [CellSchema]
+	 title: String
 });
 
 const TableModel = mongoose.model('TableModel', TableSchema)
