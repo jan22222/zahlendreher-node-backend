@@ -88,14 +88,13 @@ console.log(user)
         expiresIn: 86400 // 24 hours
       });
 
-      var authorities = "ROLE_" + user.role.name.toUpperCase();
-      
-      res.status(200).send({
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        role: authorities,
-        accessToken: token
-      });
+
+      return res.cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      })
+      .status(200)
+      .json({ message: "Logged in successfully 😊 👌" });
+
     });
 };
