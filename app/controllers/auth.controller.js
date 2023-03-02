@@ -83,15 +83,14 @@ exports.signin = (req, res) => {
           message: "Invalid Password!"
         });
       }
-console.log(user)
+
       var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
-
+      console.log(token)
 
       return res.cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
+        httpOnly: true
       })
       .status(200)
       .json({ message: "Logged in successfully 😊 👌" });
