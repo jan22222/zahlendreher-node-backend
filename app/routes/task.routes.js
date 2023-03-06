@@ -8,8 +8,6 @@ const  authJwt  = require("../middlewares/authJwt");
 
   taskroutes.get("/:id",authJwt.verifyToken, tasks.getTaskById);
   
-
-
   // Delete a single task with id
   taskroutes.delete("/:id",[authJwt.verifyToken, authJwt.findRole], tasks.deleteTask);
 
