@@ -13,12 +13,12 @@ const express = require("express")
   const routes = express.Router();
   routes.get(
     "/all",
-    [authJwt.verifyToken, authJwt.findRole],
+    [authJwt.verifyToken],
     getUsers
   );
   routes.get(
     "/:id",
-    [authJwt.verifyToken, authJwt.findRole],
+    [authJwt.verifyToken],
     getUserById
   );
   routes.delete(

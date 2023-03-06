@@ -17,9 +17,7 @@ const getUsers = async (req, res) => {
 
  const getUserById = async (req, res) => {
 	const role = req.userRole
-	if (role!="admin"){
-		return	res.json({message: "You need the admin role."})
-	}
+
     try {
         const user = await User.findById(req.params.id);
         res.json(user);
