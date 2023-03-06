@@ -1,10 +1,10 @@
 const User =require( "../models/user.model.js");
 
 const getUsers = async (req, res) => {
-	const role = req.userRole
-	if (role!="admin"){
-		return	res.json({message: "You need the admin role."})
-	}
+	// const role = req.userRole
+	// if (role!="admin"){
+	// 	return	res.json({message: "You need the admin role."})
+	// }
 		try {
 			User.find({}, function(err, users){
 				return res.json(users).status(200)
