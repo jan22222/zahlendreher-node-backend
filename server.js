@@ -1,8 +1,5 @@
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+
 
 
 // mongodb+srv://janweitzel:Abcd+9ef@cluster0.tffujiv.mongodb.net/?retryWrites=true&w=majority
@@ -32,17 +29,20 @@ db.mongoose
 
 
   
-  app.use(cors(corsOptions));
-  
-
   app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    );
+    // res.header("Access-Control-Allow-Origin", "*");
+    const allowedOrigins = ['http://localhost:3000', 'https://zahlendreher-node-frontend.vercel.app/'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+         res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
     next();
   });
+  
+
 
 const userroutes = require("./app/routes/user.routes.js")
 const authroutes = require("./app/routes/auth.routes.js")
