@@ -31,7 +31,7 @@ db.mongoose
   
   app.use(function(req, res, next) {
     // res.header("Access-Control-Allow-Origin", "*");
-    const allowedOrigins = ['http://localhost:3000', 'https://zahlendreher-node-frontend.vercel.app/'];
+    const allowedOrigins = ['https://zahlendreher-node-frontend.vercel.app/'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
          res.setHeader('Access-Control-Allow-Origin', origin);
