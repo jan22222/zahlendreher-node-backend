@@ -28,7 +28,7 @@ db.mongoose
   });
 
   let corsOptions = {
-    origin : ['https://zahlendreher-node-frontend.vercel.app/'],
+    origin : ['https://zahlendreher-node-frontend-210vzfjw1-jan22222.vercel.app/'],
  }
  
  app.use(cors(corsOptions))
