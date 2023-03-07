@@ -27,23 +27,12 @@ db.mongoose
     process.exit();
   });
 
-
+  let corsOptions = {
+    origin : ['https://zahlendreher-node-frontend.vercel.app/'],
+ }
+ 
+ app.use(cors(corsOptions))
   
-  app.use(function(req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "*");
-    const allowedOrigins = ['https://zahlendreher-node-frontend.vercel.app/'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-         res.setHeader('Access-Control-Allow-Origin', origin);
-    }
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    res.header("Access-Control-Allow-credentials", true);
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE");
-    next();
-  });
-  
-
-
 const userroutes = require("./app/routes/user.routes.js")
 const authroutes = require("./app/routes/auth.routes.js")
 const taskroutes = require("./app/routes/task.routes.js")
