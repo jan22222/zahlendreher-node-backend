@@ -32,7 +32,15 @@ db.mongoose
  }
  
  app.use(cors(corsOptions))
-  
+ app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://zahlendreher-node-frontend-210vzfjw1-jan22222.vercel.app/");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 const userroutes = require("./app/routes/user.routes.js")
 const authroutes = require("./app/routes/auth.routes.js")
 const taskroutes = require("./app/routes/task.routes.js")
