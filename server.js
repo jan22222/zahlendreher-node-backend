@@ -29,7 +29,8 @@ db.mongoose
 
   let corsOptions = {
     origin : ['https://zahlendreher-node-frontend-210vzfjw1-jan22222.vercel.app/'],
- }
+    "preflightContinue": true,
+  }
  
  app.use(cors(corsOptions))
  app.use((req, res, next) => {
