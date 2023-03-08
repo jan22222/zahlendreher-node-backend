@@ -5,7 +5,7 @@
 // mongodb+srv://janweitzel:Abcd+9ef@cluster0.tffujiv.mongodb.net/?retryWrites=true&w=majority
 
 const express = require("express");
-const cors = require("cors");
+
 const app = express();
 const db = require("./app/models");
 const Role = db.role;
@@ -27,14 +27,24 @@ db.mongoose
     process.exit();
   });
 
+  app.use(function (req, res, next) {
 
-      app.use(cors({
-        'allowedHeaders': ['sessionId', 'Content-Type'],
-        'exposedHeaders': ['sessionId'],
-        'origin': '*',
-        'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        'preflightContinue': false
-      }));
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'https://zahlendreher-node-frontend.vercel.app/signin');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
   
 
 const userroutes = require("./app/routes/user.routes.js")
