@@ -1,6 +1,6 @@
 
 var corsOptions = {
-  origin: 'https://zahlendreher-node-frontend.vercel.app/',
+  origin: ['https://zahlendreher-node-frontend.vercel.app/', "https://zahlendreher-node-frontend.vercel.app/signin"],
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
