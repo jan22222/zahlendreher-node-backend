@@ -1,5 +1,10 @@
 
-
+var corsOptions = {
+  origin: 'https://zahlendreher-node-frontend.vercel.app/',
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 
 // mongodb+srv://janweitzel:Abcd+9ef@cluster0.tffujiv.mongodb.net/?retryWrites=true&w=majority
@@ -27,20 +32,19 @@ db.mongoose
     process.exit();
   });
 
-  let corsOptions = {
-    origin : ['https://zahlendreher-node-frontend-210vzfjw1-jan22222.vercel.app/'],
-    "preflightContinue": true,
-  }
- 
- app.use(cors(corsOptions))
- app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://zahlendreher-node-frontend-210vzfjw1-jan22222.vercel.app/");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
+  
+  app.use(cors(corsOptions));
+  
+
+  app.use(function(req, res, next) {
+    
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, XMLHttpRequest'
+    );
+    next();
+  });
 
 const userroutes = require("./app/routes/user.routes.js")
 const authroutes = require("./app/routes/auth.routes.js")
